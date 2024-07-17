@@ -1,0 +1,103 @@
+{
+  "products": [
+    {
+      "id": "1",
+      "description": "Rounded neck - T shirt 100% Cotton",
+      "srcImage": "./images/625a13e716a1d682c34f2bcaa5d99320.png",
+      "score": 5,
+      "price": 85
+    },
+    {
+      "id": "2",
+      "description": "Rounded neck - T shirt 100% Cotton",
+      "srcImage": "./images/0dde0aacac5690d0ce010043e7205b85.png",
+      "score": 4,
+      "price": 98
+    },
+    {
+      "id": "3",
+      "description": "Rounded neck - T shirt 100% Cotton",
+      "srcImage": "./images/0eaaea5f6a5cd9d8962b9ce52164ed96.png",
+      "score": 2,
+      "price": 110
+    },
+    {
+      "id": "4",
+      "description": "Rounded neck - T shirt 100% Cotton",
+      "srcImage": "./images/6a14a36b53b057ccaef70d976ba7c1d8.png",
+      "score": 1,
+      "price": 100
+    },
+    {
+      "id": "5",
+      "description": "Rounded neck - T shirt 100% Cotton",
+      "srcImage": "./images/ef96c5189ce154d481b4ddb4a3c4a2fa.png",
+      "score": 5,
+      "price": 202
+    },
+    {
+      "id": "6",
+      "description": "Rounded neck - T shirt 100% Cotton",
+      "srcImage": "./images/80e591c5a4e5c1a5fe3159f21dab5ed3.png",
+      "score": 3,
+      "price": 78
+    },
+    {
+      "id": "7",
+      "description": "Rounded neck - T shirt 100% Cotton",
+      "srcImage": "./images/07570e62763103158964bb967df0a6b8.png",
+      "score": 2,
+      "price": 45
+    },
+    {
+      "id": "8",
+      "description": "Rounded neck - T shirt 100% Cotton",
+      "srcImage": "./images/d7ba97adb81d92aa5e5a05b8527895b5.png",
+      "score": 4,
+      "price": 300
+    }
+  ],
+  "user": [
+    {
+      "id": "1",
+      "fullName": "Ali Ahmady",
+      "email": "AliAhmady@gmail.com",
+      "code": 11654782524,
+      "phoneNumber": 9140338486
+    }
+  ],
+  "shopping": [
+    {
+      "id": "1",
+      "price": 85,
+      "srcImg": "./images/625a13e716a1d682c34f2bcaa5d99320.png",
+      "count": 1,
+      "size": "M",
+      "description": "Rounded neck - T shirt 100% Cotton"
+    },
+    {
+      "id": "2",
+      "price": 98,
+      "srcImg": "./images/0dde0aacac5690d0ce010043e7205b85.png",
+      "count": 1,
+      "size": "M",
+      "description": "Rounded neck - T shirt 100% Cotton"
+    },
+    {
+      "id": "2",
+      "price": 98,
+      "srcImg": "./images/0dde0aacac5690d0ce010043e7205b85.png",
+      "count": 1,
+      "size": "M",
+      "description": "Rounded neck - T shirt 100% Cotton"
+    },
+    {
+      "id": "2",
+      "price": 98,
+      "srcImg": "./images/0dde0aacac5690d0ce010043e7205b85.png",
+      "count": 1,
+      "size": "M",
+      "description": "Rounded neck - T shirt 100% Cotton"
+    }
+  ]
+}
