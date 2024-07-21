@@ -10,7 +10,7 @@ import IconeBasketShopping from "../icons/IconeBasketShopping";
 import { useSelect } from "../store/useSelect";
 import BtnAddToCart from "./btns/BtnAddToCart";
 
-function SelectCardComponent({warning}) {
+function SelectCardComponent() {
   const { forwardShopping } = useSelect((state) => state);
   const { clearforward} = useSelect((state) => state.action);
   const size = useRef(null);
@@ -67,7 +67,7 @@ function SelectCardComponent({warning}) {
         </div>
         <div className=" col-start-1 col-end-4 row-start-1">
           <div>
-            <img src={forwardShopping.srcImage} alt={`product${forwardShopping.id}`} className='w-[320px] h-[320px] rounded-2xl mb-5' />
+            <img src={forwardShopping.srcImg} alt={`product${forwardShopping.id}`} className='w-[320px] h-[320px] rounded-2xl mb-5' />
           </div>
           <div id="Description" className="flex flex-col gap-2">
             <div className="flex justify-between ">
