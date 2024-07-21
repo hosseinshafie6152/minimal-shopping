@@ -5,11 +5,13 @@ import SwiperSlider from '../components/SwiperSlider'
 import ListCard from '../components/card/ListCard';
 import useFetch from '../hooks/useFetch';
 import { useSelect } from '../store/useSelect';
+import SnakeBar from '../components/SnakeBar';
+
 
 function ProductPage() {
   const { data } = useFetch('http://localhost:8000/products')
   const component = useRef(null)
-  const { forwardShopping } = useSelect((state) => state)
+  const { forwardShopping } = useSelect((state) => state);
 
   function show() {
     if (Object.entries(forwardShopping).length > 0) {
@@ -17,7 +19,7 @@ function ProductPage() {
         component.current = <SelectCardComponent />
       )
     }
-    else{
+    else {
       component.current = null
     }
   }
@@ -36,6 +38,9 @@ function ProductPage() {
       </div>
       <div className=' absolute top-3 right-3 z-50'>
         {component.current}
+      </div>
+      <div className=''>
+        <SnakeBar />
       </div>
     </div>
   )
