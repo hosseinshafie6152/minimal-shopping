@@ -9,12 +9,12 @@ function ListCard({ products }) {
 
   const listProducts = products?.map((item) => {
     return (
-      <ItemCard key={item.id} price={item.price} description={item.description} score={item.score} srcImg={item.srcImage} id={item.id} favoriteItem={() => { setFavorite(item) }} selectItem={() => {setforwardShopping(item) }} />
+      <ItemCard key={item.id} price={item.price} description={item.description} score={item.score} srcImage={item.srcImg} id={item.id} favoriteItem={() => { setFavorite(item) }} selectItem={() => {setforwardShopping(item) }} />
     )
   })
   return (
     <>
-      <div className=' grid grid-cols-4 grid-rows-2 bg-gray1 w-[1440px] mx-auto gap-10 px-6'>
+      <div className=' grid grid-cols-4 grid-rows-2  bg-gray1 w-[1440px] mx-auto gap-10 px-6'>
         {listProducts}
       </div>
     </>

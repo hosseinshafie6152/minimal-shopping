@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 
-const usePost = (url , data , count , size)=>{
+const usePost = (url , data)=>{
 
       useEffect(()=>{
         setTimeout(() => {
@@ -11,12 +11,11 @@ const usePost = (url , data , count , size)=>{
                 },
                 body : JSON.stringify({
                     'id' : data.id,
-                    'price' : data.price,
-                    'srcImg' : data.srcImage ,
-                    'count' : count,
-                    'size' : size,
-                    'description' : data.description
-                })
+                    'fullName' : data.FullName,
+                    'email' : data.email ,
+                    'code' : data.code ,
+                    'phoneNumber' : data.phoneNumber
+                    })
             }).then((response)=>response.json()).then(console.log())
         }, 1000);
       },[url])

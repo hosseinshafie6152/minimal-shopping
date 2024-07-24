@@ -5,16 +5,16 @@ import IconGrayLove from '../../icons/IconGrayLove';
 import IconeBasketShopping from "../../icons/IconeBasketShopping";
 import IconTike from "../../icons/IconTike";
 import IconRecycleBin from '../../icons/IconRecycleBin'
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useFavorite } from "../../store/useFavorite";
 import { useSelect } from "../../store/useSelect";
 
-function ItemCard({ srcImg, price, score, description, id, favoriteItem, selectItem }) {
+function ItemCard({ srcImage, price, score, description, id, favoriteItem, selectItem }) {
     const [iconLove, setIconLove] = useState(<IconGrayLove/>)
-    const [iconBasketOrselect, setIconBasketOrselect] = useState(<IconeBasketShopping/>)
-    const [className , setClassName] = useState('w-[320px] h-[320px] bg-gray2 rounded-2xl absolute z-10 hover:z-30');
+    const iconBasketOrselect= useRef(<IconeBasketShopping/>)
+    const className = useRef('w-[320px] h-[320px] bg-gray2 rounded-2xl absolute z-10 hover:z-30');
     const { favoriteList } = useFavorite((state) => state);
-    const {selectedList} = useSelect((state)=>state)
+    const {selectedList} = useSelect((state)=>state);
 
 
     var arrayeIconStar = [];
@@ -43,12 +43,12 @@ function ItemCard({ srcImg, price, score, description, id, favoriteItem, selectI
         }
        function setIconB() {
             if (selectedList?.some((_item) => _item.id === id)) {
-                setIconBasketOrselect(<IconTike />);
-                setClassName('w-[320px] h-[320px] bg-green rounded-2xl absolute z-30');
+                iconBasketOrselect.current = <IconTike />;
+                className.current = 'w-[320px] h-[320px] bg-green rounded-2xl absolute z-30'
                 setIconLove(<IconRecycleBin/>);
             } else {
-                setIconBasketOrselect(<IconeBasketShopping />)
-                setClassName('w-[320px] h-[320px] bg-gray2 rounded-2xl absolute z-10 hover:z-30')
+                iconBasketOrselect.current = <IconeBasketShopping />
+                className.current = 'w-[320px] h-[320px] bg-gray2 rounded-2xl absolute z-10 hover:z-30'
             }
         }
         setIconL()
@@ -64,11 +64,11 @@ function ItemCard({ srcImg, price, score, description, id, favoriteItem, selectI
                     </button>
                 </div>
                 <div className="relative">
-                    <img src={srcImg} alt={`product${id}`} className="w-[320px] h-[320px] rounded-2xl absolute z-20 hover:z-0" />
-                    <div className={className}>
+                    <img src={srcImage} alt={`product${id}`} className="w-[320px] h-[320px] rounded-2xl absolute z-20 hover:z-0" />
+                    <div className={className.current}>
                         <div className=" flex justify-center items-center bg-white top-32 left-36 w-[42px] h-[42px] rounded-full absolute">
                             <button onClick={()=>{selectItem();}}>
-                                {iconBasketOrselect}
+                                {iconBasketOrselect.current}
                             </button>
                         </div>
                     </div>

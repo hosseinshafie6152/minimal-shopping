@@ -13,6 +13,7 @@ import SlasesPage from "./pages/Slases.Component"
 import ShoppingPage from "./pages/Shopping.Component"
 import ProfileComponent from "./components/Account.Component/ProfileComponent"
 import OrdersComponent from './components/Account.Component/OrdersComponent'
+import  BillComponent from './components/Account.Component/BillComponent'
 
 function App() {
   const routes = useRoutes([
@@ -42,7 +43,25 @@ function App() {
         },
         {
           path: '/account',
-          element:<AccountPage/>
+          element:<AccountPage/>,
+          children:[
+            {
+              path : '/account/profile',
+              element:<ProfileComponent/>
+            },
+            {
+              path: '/account/orders',
+              element : <OrdersComponent/>
+            },
+            {
+              path:'/account/support',
+              element: <SupportPage/>
+            },
+            {
+              path:'/account/bill',
+              element:<BillComponent/>
+            }
+          ]
         },
         {
           path: '/cart',

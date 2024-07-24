@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import IconFillStar from "../icons/IconFillStar";
 import IconStar from "../icons/IconStar";
 import IconAdd from '../icons/IconAdd';
@@ -9,16 +9,18 @@ import IconeClose from '../icons/IconeClose'
 import IconeBasketShopping from "../icons/IconeBasketShopping";
 import { useSelect } from "../store/useSelect";
 import BtnAddToCart from "./btns/BtnAddToCart";
+import BtnSize from "./btns/BtnSize";
+import { useSize } from "../store/useSize";
 
-function SelectCardComponent({warning}) {
+
+function SelectCardComponent() {
   const { forwardShopping } = useSelect((state) => state);
-  const { clearforward} = useSelect((state) => state.action);
-  const size = useRef(null);
-  const [count , setCount] = useState(1);
-  
+  const { clearforward } = useSelect((state) => state.action);
+  const [count, setCount] = useState(1);
+  const {size} = useSize((state)=>state)
 
   var arrayeIconStar = [];
-//the following function for show stars 
+  //the following function for show stars 
   function countFillStar(score) {
     let index = 1
     while (index <= score) {
@@ -30,29 +32,16 @@ function SelectCardComponent({warning}) {
     }
   };
   countFillStar(forwardShopping.score);
-//the following function for set state size of shopping and change className of cards
-  function sizeFn(event) {
-    size.current = event.target.innerHTML;
-    const newClass = 'border border-orange w-[42px] h-[42px] rounded-md text-white bg-orange font-medium';
-    const lastClass = 'border border-orange w-[42px] h-[42px] rounded-md text-orange font-medium';
-    document.querySelectorAll('#size').forEach((item) => {
-      return item.className = lastClass;
-    });
-    if (event.target.className === newClass) {
-      event.target.className = lastClass;
-    } else {
-      event.target.className = newClass;
-    }
-  }
+  
   // the following function for increase count products
   function increase() {
-    setCount((i)=> i += 1)
+    setCount((i) => i += 1)
   }
-// the folloing function for decrease count products
+  // the folloing function for decrease count products
   function decrease() {
     if (count > 0) {
       setCount((i) => i -= 1)
-    }else{
+    } else {
       return
     }
   }
@@ -67,7 +56,7 @@ function SelectCardComponent({warning}) {
         </div>
         <div className=" col-start-1 col-end-4 row-start-1">
           <div>
-            <img src={forwardShopping.srcImage} alt={`product${forwardShopping.id}`} className='w-[320px] h-[320px] rounded-2xl mb-5' />
+            <img src={forwardShopping.srcImg} alt={`product${forwardShopping.id}`} className='w-[320px] h-[320px] rounded-2xl mb-5' />
           </div>
           <div id="Description" className="flex flex-col gap-2">
             <div className="flex justify-between ">
@@ -81,7 +70,8 @@ function SelectCardComponent({warning}) {
               {arrayeIconStar}
             </div>
           </div>
-          <div className="mt-6">
+          <div className="mt-6 relative" id="CountSize">
+            <div id="ping"></div>
             <div id="quantity" className="w-[126px] h-[42px] border border-gray0.1 rounded-lg flex items-center justify-around">
               <button onClick={() => decrease()}>
                 <IconSubtraction />
@@ -93,13 +83,7 @@ function SelectCardComponent({warning}) {
                 <IconAdd />
               </button>
             </div>
-            <div className="flex justify-between w-3/4 mt-5">
-              <button id="size" onClick={() => { sizeFn(event) }} className='border border-orange w-[42px] h-[42px] rounded-md text-orange font-medium'>S</button>
-              <button id="size" onClick={() => { sizeFn(event) }} className='border border-orange w-[42px] h-[42px] rounded-md text-orange font-medium'>M</button>
-              <button id="size" onClick={() => { sizeFn(event) }} className='border border-orange w-[42px] h-[42px] rounded-md text-orange font-medium'>L</button>
-              <button id="size" onClick={() => { sizeFn(event) }} className='border border-orange w-[42px] h-[42px] rounded-md text-orange font-medium'>XL</button>
-              <button id="size" onClick={() => { sizeFn(event) }} className='border border-orange w-[42px] h-[42px] rounded-md text-orange font-medium'>XXL</button>
-            </div>
+            <BtnSize/>
           </div>
           <div>
             <p id="warning"></p>
@@ -127,7 +111,7 @@ function SelectCardComponent({warning}) {
         </div>
         <div className="row-start-12 flex col-start-1 col-end-5 items-end justify-between">
           <div className="flex">
-            <BtnAddToCart product={forwardShopping} size={size} count={count}/>
+            <BtnAddToCart product={forwardShopping} size={size} count={count} />
             <button className="text-gray2 font-medium" onClick={() => { clearforward() }}>cancel</button>
           </div>
           <div className="flex">
