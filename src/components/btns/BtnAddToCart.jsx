@@ -4,13 +4,15 @@ import { useSelect } from '../../store/useSelect';
 import BtnDelete from './BtnDelete';
 import BtnEdit from './BtnEdit';
 import useFetch from '../../hooks/useFetch';
+import { useSize } from '../../store/useSize';
 
 function BtnAddToCart({ product, size, count }) {
     const { setSelect } = useSelect((state) => state.action);
-    const { selectedList } = useSelect((state) => state);
+    
     const [innerText, setInnerText] = useState('Add to cart');
     const className = useRef('w-[127px] border border-orange text-orange font-medium rounded-[31.5px] mr-3');
     const [btnDeleteEdit, setBtnDeltetEdit] = useState();
+    const {setSize} = useSize((state)=>state.action)
     const {data} = useFetch('http://localhost:8000/shopping');
     const isAdd = useRef(true)
 
@@ -21,11 +23,11 @@ function BtnAddToCart({ product, size, count }) {
                 return (
                     setBtnDeltetEdit(<>
                         <BtnDelete id={product.id}/>
-                        <BtnEdit id={product.id} />
+                        <BtnEdit item={product} position={'Home'} />
                     </>)
                 )
             } else {
-                if (size.current === null) {
+                if (size === null) {
                     return (
                         document.getElementById('warning').innerText = 'You have not yet selected a size for your purchase!'
                     )
@@ -42,10 +44,10 @@ function BtnAddToCart({ product, size, count }) {
                                 'price': product.price,
                                 'srcImg': product.srcImg,
                                 'count': count,
-                                'size': size.current,
+                                'size': size,
                                 'description': product.description
                             })
-                        }).then((response) => response.json().then((res) => { setInnerText('added to cart'); setSelect(res);className.current = 'w-[127px] bg-green border border-green text-white font-medium rounded-[31.5px] mr-3 cursor-not-allowed' }))
+                        }).then((response) => response.json().then((res) => { setInnerText('added to cart'); setSelect(res) ; setSize(null);className.current = 'w-[127px] bg-green border border-green text-white font-medium rounded-[31.5px] mr-3 cursor-not-allowed' }))
                     }, 2000)
                     isAdd.current = false
                 }
