@@ -1,4 +1,3 @@
-import { useState } from "react";
 import IconFillStar from "../icons/IconFillStar";
 import IconStar from "../icons/IconStar";
 import IconAdd from '../icons/IconAdd';
@@ -11,12 +10,14 @@ import { useSelect } from "../store/useSelect";
 import BtnAddToCart from "./btns/BtnAddToCart";
 import BtnSize from "./btns/BtnSize";
 import { useSize } from "../store/useSize";
+import { useCount } from "../store/useCount";
 
 
 function SelectCardComponent() {
   const { forwardShopping } = useSelect((state) => state);
   const { clearforward } = useSelect((state) => state.action);
-  const [count, setCount] = useState(1);
+  const {count} = useCount((state)=>state);
+  const {increase , decrease} = useCount((state)=>state.action);
   const {size} = useSize((state)=>state)
 
   var arrayeIconStar = [];
@@ -33,19 +34,6 @@ function SelectCardComponent() {
   };
   countFillStar(forwardShopping.score);
   
-  // the following function for increase count products
-  function increase() {
-    setCount((i) => i += 1)
-  }
-  // the folloing function for decrease count products
-  function decrease() {
-    if (count > 0) {
-      setCount((i) => i -= 1)
-    } else {
-      return
-    }
-  }
-
   return (
     <>
       <div className=' w-[500px] h-[1040px] bg-white rounded-2xl p-5 grid grid-cols-4 grid-rows-12 shadow-xl shadow-gray2 '>
@@ -73,13 +61,13 @@ function SelectCardComponent() {
           <div className="mt-6 relative" id="CountSize">
             <div id="ping"></div>
             <div id="quantity" className="w-[126px] h-[42px] border border-gray0.1 rounded-lg flex items-center justify-around">
-              <button onClick={() => decrease()}>
+              <button onClick={() => decrease(1)}>
                 <IconSubtraction />
               </button>
               <span className="h-[42px] border border-gray0.1"></span>
               <span> {count} </span>
               <span className="h-[42px] border border-gray0.1"></span>
-              <button onClick={() => increase()}>
+              <button onClick={() => increase(1)}>
                 <IconAdd />
               </button>
             </div>

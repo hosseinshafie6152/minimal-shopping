@@ -24,8 +24,10 @@ function OrdersComponent() {
           <td className='border-l border-gray2 font-medium'>{item.price}$</td>
           <td className='border-l border-gray2 font-medium'>{item.size}</td>
           <td className='border-l border-gray2 font-medium'>{item.count}</td>
+          {/*<td className='border-l border-gray2'><input type="text"  id="editOrder" defaultValue={item.size} className='w-10'/></td>
+          <td className='border-l border-gray2'><input type="number"  id="editOrder" defaultValue={item.count} className='w-10'/></td>*/}
           <td className='border-l border-gray2'><BtnDelete id={item.id}/></td>
-          <td className='border-l border-gray2'><BtnEdit id={item.id} position={'Orders'}/></td>
+          <td className='border-l border-gray2'><BtnEdit item={item} position={'Orders'}/></td>
         </tr>
       )
     })

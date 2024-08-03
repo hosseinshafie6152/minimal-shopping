@@ -59,12 +59,14 @@
   ],
   "user": [
     {
-      "id": "1",
-      "fullName": "Ali Ahmady",
-      "email": "AliAhmady@gmail.com",
-      "code": 11654782524,
-      "phoneNumber": 9140338486
+      "fullName": "João Souza Silva",
+      "email": "teste@exemplo.us",
+      "code": "11654782524",
+      "phoneNumber": "3121286800",
+      "id": "1"
     }
   ],
-  "shopping": []
+  "shopping": [
+    
+  ]
 }

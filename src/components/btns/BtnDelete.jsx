@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import { useSelect } from "../../store/useSelect";
 import Loading from "../Loading";
 
-function BtnDelete({ id}) {
+function BtnDelete({id}) {
     const { setSelect } = useSelect((state) => state.action);
     const [innerText, setInnerText] = useState('Delete');
     const isDelete = useRef(true);
@@ -19,7 +19,6 @@ function BtnDelete({ id}) {
             }, 2000);
             isDelete.current = false;
         }
-
     }
     return (
         <>

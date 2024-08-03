@@ -8,6 +8,8 @@ import IconRecycleBin from '../../icons/IconRecycleBin'
 import { useEffect, useRef, useState } from "react";
 import { useFavorite } from "../../store/useFavorite";
 import { useSelect } from "../../store/useSelect";
+import BtnDelete from "../btns/BtnDelete";
+
 
 function ItemCard({ srcImage, price, score, description, id, favoriteItem, selectItem }) {
     const [iconLove, setIconLove] = useState(<IconGrayLove/>)
@@ -15,6 +17,7 @@ function ItemCard({ srcImage, price, score, description, id, favoriteItem, selec
     const className = useRef('w-[320px] h-[320px] bg-gray2 rounded-2xl absolute z-10 hover:z-30');
     const { favoriteList } = useFavorite((state) => state);
     const {selectedList} = useSelect((state)=>state);
+    const {setSelect} = useSelect((state)=>state.action);
 
 
     var arrayeIconStar = [];
@@ -31,6 +34,16 @@ function ItemCard({ srcImage, price, score, description, id, favoriteItem, selec
     };
     countFillStar(score)
 
+    function setFn(e){
+        if (e.target.nodeName === 'svg') {
+            favoriteItem()
+        }else{
+            console.log('delete')
+            fetch(`http://localhost:8000/shopping/${id}` , {
+                method : 'DELETE'
+            }).then((response)=> response.json().then((res)=> setSelect(res)))
+        }
+    }
 
     useEffect(() => {
         function setIconL() {
@@ -59,7 +72,7 @@ function ItemCard({ srcImage, price, score, description, id, favoriteItem, selec
         <div>
             <div id="image" className="w-[320px] h-[320px] relative" >
                 <div className=" absolute top-3 right-3 bg-white rounded-full w-[42px] h-[42px] flex justify-center items-center z-40">
-                    <button onClick={()=>{favoriteItem()}}>
+                    <button onClick={(e)=>{setFn(e)}}>
                         {iconLove}
                     </button>
                 </div>
